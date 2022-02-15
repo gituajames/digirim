@@ -1,0 +1,88 @@
+{% load static %}
+
+<style>
+    table{
+        /* border: 1px solid; */
+        width: 75%;
+        border-collapse: collapse;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+    th, td{
+        border-bottom: 1px solid  #ddd;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    th{
+        height: 50px;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    td{
+        text-align: left;
+    }
+
+    tr:hover{
+        background-color: rgb(103, 103, 107);
+    }
+
+    /* table links  */
+
+    a{
+        text-decoration: none;
+    }
+
+    a:hover{
+        text-decoration: brown;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'maps/base.css' %}">
+<div style="overflow-x:auto;">
+    <table>
+        <tr>
+            <th>Map Title</th>
+            <th>County</th>
+            <th>Date</th>
+            <th>Scanned</th>
+            <th>Download</th>
+        </tr>
+        
+        {% if all_maps %}
+        
+        {% for map in all_maps %}
+        <tr>
+            <td><a href="{% url 'maps:map_details' map.id %}">{{ map.title }}</a></td>
+
+            <td>{{ map.county }}</td>
+            
+            <td>{{ map.stamped_county_date }}</td>
+    
+            <td>{{ map.scanned }}</td>
+    
+            <td>
+                {% if map.scanned == True %}
+                <a href="#">Download</a>
+                {% else %}
+                Download
+                {% endif %}
+            </td>
+    
+        
+        </tr>
+    
+        {% endfor %}
+    
+        {% else %}
+    
+                <p>no such map</p>
+        
+        {% endif %}
+    
+    </table>
+</div>
+
+<br>
+

@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} geomird_maps {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'maps/base.css' %}">
+    <link rel="stylesheet" href="{% static 'maps/base.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1>Geomird Maps</h1>
+        <a href="https://geomird.co.ke" class="logo">
+            <img src="{% static 'img/logo.svg' %}" alt="">
+        </a>
+        <form action="{% url 'maps:search' %}" method="get">
+            <input type="text" placeholder="search for map" name="search">
+            <input type="submit" value="search">
+            <!-- <button type="submit">search</button> -->
+        </form>
+    </div>
+
+    <div class="sidebar">
+        <ul>
+            <h5>Map type</h5>
+            <li><a href="{% url 'maps:map_filter_rim' %}">RIMs</a></li>
+            <li><a href="{% url 'maps:map_filter_cadastral' %}">Cadastral</a></li>
+            <li><a href="{% url 'maps:map_filter_pdp' %}">PDP</a></li>
+
+            <h5>County</h5>
+            <form action="{% url 'maps:filter_by_county' %}" method="get">
+                <input type="text" placeholder="filter by county" name="county">
+                <input type="submit" value="filter">
+                <!-- <button type="submit">search</button> -->
+            </form>
+        </ul>
+    </div>
+
+    <div class="main">
+        {% block body %}
+        {% endblock %}
+    </div>
+    
+    
+</body>
+</html>

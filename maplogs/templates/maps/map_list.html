@@ -1,0 +1,27 @@
+{% extends 'maps/base.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'maps/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% block title %} map list {% endblock %}
+
+{% block body %}
+
+<table class="maps table">
+    <tr>
+        <th>Map Title</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>County</th>
+    </tr>
+    {% for map in maps %}
+    <tr>
+        <td><a href="{{ map.get_absolute_url }}">{{ map.title }}</a></td>
+        <td>{{ map.stamped_county_date }}</td>
+        <td>{{ map.map_category }}</td>
+        <td>{{ map.county }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

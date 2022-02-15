@@ -1,0 +1,8 @@
+{% extends 'maps/base.html' %}
+    {% block title %} map not available {% endblock %}
+
+    {% block body %}
+    you seem lost
+    <a href="{% url 'maps:map_list' %}">return home</a>
+    {% endblock %}
+

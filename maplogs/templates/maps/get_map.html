@@ -1,0 +1,17 @@
+{% extends 'maps/base.html' %}
+
+{% block body %}
+{% if map_sent %}
+<p> map was sent to {{ form.cleaned_data.email }}</p>
+
+{% else %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_table }}
+
+  <input type="submit" value="getmap">
+</form>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'maps/base.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="static/base.css">
+<link rel="stylesheet" href="{% static 'maps/base.css' %}">
+{% block title %} {{ map.title }} {% endblock %}
+
+{% block body %}
+
+<div class="map_details">
+    <h4 >
+        {{ map.title }}
+    </h4>
+
+    <p>
+        aquired on <strong>{{ map.stamped_county_date }}</strong>
+    </p>
+    {% if not map.image %}
+    <p>request a hard copy its present</p>
+    {% else %}
+    <a href="{% url 'maps:get_map' map.id %}">Get Map</a>
+    {% endif %}
+    
+    <img src="{% if map.image %} {{ map.image.url }} {% else %} {% static 'img/no_image.svg' %} {% endif %}" alt="" srcset="" class="map_image">
+    
+    
+</div>
+
+
+{% endblock %}
+
